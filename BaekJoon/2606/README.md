@@ -38,6 +38,7 @@ def bfs(virus_map,start):
 
 print((bfs(virus_map,1)))
 ```
+
 ### 시간복잡도
 
 
