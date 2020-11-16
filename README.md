@@ -1,5 +1,5 @@
 # algorithm-study
-> 알고리즘 스터디를 위한 저장소입니다.
+> 알고리즘 공부를 위한 저장소입니다.
 
 ## Programming Language 
 * Java, Python, SQL
@@ -16,3 +16,5 @@
 * **swexpertacademy**: https://www.swexpertacademy.com/main/main.do
 * **geeksforgeeks**: https://www.geeksforgeeks.org/
 * **codeforces**: http://codeforces.com
+
+#### 11/16 커밋 시작
