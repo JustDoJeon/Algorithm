@@ -61,8 +61,6 @@ for _ in range(T):
 부끄러워도 남겨놓겠습니다.
 ```python
 # 유기농 배추
-```python
-# 유기농 배추
 import sys
 
 sys.setrecursionlimit(10000)
