@@ -58,50 +58,55 @@ for _ in range(T):
 ```
 
 ### 내가 시도 해본코드 
-<h5>부끄러워도 남겨놓겠습니다.</h5>
+부끄러워도 남겨놓겠습니다.
 ```python
-# T = int(input())
+# 유기농 배추
+```python
+# 유기농 배추
+import sys
 
-n, m, k = map(int, input().split())
+sys.setrecursionlimit(10000)
 
-matrix = [[0] * (n + 1) for i in range(n + 1)]
+dx = [-1,0,0,1]
+dy = [0,1,-1,0]
 
-visited = [[0] * (n + 1) for i in range(n + 1)]
+T = int(input())
 
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
+def dfs(x,y):
+    visited[x][y] = True
 
-print(matrix)
-
-print(visited)
-
-bug = 0
-
-for i in range(k):
-    x, y = map(int, input().split())
-    matrix[x][y] = 1
-
-
-def dfs(x, y):
-    visited[x][y] = 1
-    global  bug
     for i in range(4):
         nx = x + dx[i]
-        ny = y + dy[i]
+        ny = y +dy[i]
 
-        if nx < 0 or ny < 0 or nx >= n or ny >= m:
+        if nx<0 or ny<0 or nx>=n or ny>=m:
             continue
-        if visited[nx][ny] == 0 and matrix[nx][ny] != 1:
-            print("여기찍힘?")
+        if arr[nx][ny] ==1 and visited[nx][ny] == False:
             dfs(nx,ny)
-            bug +=1
 
-    return bug
+def solve():
+    cnt = 0
+    for i in range(n):
+        for j in range(m):
+            if arr[i][j] ==1 and visited[i][j] != 1:
+                dfs(i,j)
+                cnt+=1
+    print(cnt)
 
+for _ in range(T):
+    m,n, k = map(int, input().split())
 
-print(dfs(0,0))
+    # arr = [[0] for _ in range(m) for _ in range(n)]
+    arr = [[0] * m for _ in range(n)]
+    visited = [ [False]*m for _ in range(n)]
+    # print(arr)
+    # print(arr2)
+    for _ in range(k):
+        x, y = map(int, input().split())
+        arr[y][x] = 1
+    solve()
 ```
-
+```
 ### 배운것
 파이썬으로 바꾼지 얼마되지않아서인지 2차원 행렬의 입력을 받는것이 어색했다.
 행과 열의 움직임을 생각해서 입력은 x,y로 받았지만 실제 문제의 그림이 움직이듯이 arr[y][x]로 해야한다
