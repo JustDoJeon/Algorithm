@@ -61,48 +61,41 @@ for _ in range(T):
 부끄러워도 남겨놓겠습니다.
 ```python
 # 유기농 배추
-import sys
-
-sys.setrecursionlimit(10000)
-
-dx = [-1,0,0,1]
-dy = [0,1,-1,0]
-
 T = int(input())
 
-def dfs(x,y):
-    visited[x][y] = True
+n, m, k = map(int, input().split())
 
+matrix = [[0] * (n + 1) for i in range(n + 1)]
+
+visited = [[0] * (n + 1) for i in range(n + 1)]
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+print(matrix)
+
+print(visited)
+
+bug = 0
+
+for i in range(k):
+    x, y = map(int, input().split())
+    matrix[x][y] = 1
+
+def dfs(x, y):
+    visited[x][y] = 1
+    global  bug
     for i in range(4):
         nx = x + dx[i]
-        ny = y +dy[i]
-
-        if nx<0 or ny<0 or nx>=n or ny>=m:
+        ny = y + dy[i]
+        if nx < 0 or ny < 0 or nx >= n or ny >= m:
             continue
-        if arr[nx][ny] ==1 and visited[nx][ny] == False:
+        if visited[nx][ny] == 0 and matrix[nx][ny] != 1:
+            print("여기찍힘?")
             dfs(nx,ny)
-
-def solve():
-    cnt = 0
-    for i in range(n):
-        for j in range(m):
-            if arr[i][j] ==1 and visited[i][j] != 1:
-                dfs(i,j)
-                cnt+=1
-    print(cnt)
-
-for _ in range(T):
-    m,n, k = map(int, input().split())
-
-    # arr = [[0] for _ in range(m) for _ in range(n)]
-    arr = [[0] * m for _ in range(n)]
-    visited = [ [False]*m for _ in range(n)]
-    # print(arr)
-    # print(arr2)
-    for _ in range(k):
-        x, y = map(int, input().split())
-        arr[y][x] = 1
-    solve()
+            bug +=1
+     return bug
+ print(dfs(0,0))
 ```
 ```
 ### 배운것
