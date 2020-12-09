@@ -26,3 +26,31 @@ public class Daily_Temperature_Again {
 		}
 	}
 }
+
+
+
+import java.util.Stack;
+
+class Solution {
+    public int[] solution(int[] price) {
+        int[] answer = new int[price.length];
+        Stack<Integer> st = new Stack<Integer>();
+        for(int i=0; i<price.length; i++){
+            while(!st.isEmpty() && price[st.peek()] < price[i]){
+                int index = st.pop();
+                answer[index ] = i-index;
+        }
+        st.push(i);
+            }
+        
+        for(int i=0; i<answer.length; i++ ){
+            if (answer[i] == 0){
+                answer[i] = -1;
+        }
+        }
+        
+        
+        
+        return answer;
+    }
+}
