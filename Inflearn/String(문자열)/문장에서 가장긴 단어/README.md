@@ -8,33 +8,47 @@
 ### 코드
 
 ```python
-# 큰 수 만들기 프로그래머스 LV2
+package String_Ex;
 
-# k개를 뺏을때 가장큰수가 나와야함
+import java.util.Scanner;
 
-def solution(number, k):
-    collected = []
+public class Solution1_2 {
 
-    for (i,num) in enumerate(number):
-        while collected and collected[-1] < num and k >0:
-            print("!!!!")
-            collected.pop()
-            k -= 1
+	public static void main(String[] args) {
+		Main t = new Main();
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
 
-        if k ==0:
-            collected += number[i:]
-            break
+		System.out.println("정답은?");
+		System.out.println(t.solution(str));
 
-        print("!!???!")
-        collected.append(num)
-    # k가 0보다 크면 collected에서 k개까지만 넣는거 이해안되면 밑에 예시설명있음
-    collected = collected[:-k] if k>0 else collected
-    answer = "".join(collected)
-    return answer
-number = "4177252841"
-k =4
+	}
 
-print(solution(number,k))
+}
+
+class Main {
+	public String solution(String str) {
+		String answer = "";
+
+		int m = Integer.MIN_VALUE, pos;
+		while ((pos = str.indexOf(' ')) != -1) {
+			String tmp = str.substring(0, pos);
+			int len = tmp.length();
+			if (len > m) {
+				m = len;
+				answer = tmp;
+			}
+			str = str.substring(pos + 1);
+		}
+		// 위 논리면 마지막단어는 tmp에 못들어감
+		if (str.length() > m) {
+			answer = str;
+		}
+		return answer;
+
+	}
+}
+
 ```
 
 ### 내가 시도 해본코드 
@@ -91,4 +105,4 @@ class Main {
 
 ● 가장 큰 수 구하는 알고리즘 체크하기 
 
-
+● 로직을 정확히 이해해야 indexOf와 subString 의 사용을 문자열에서 적용할듯... 마지막 단어가 tmp에 안들어가는것 까지 체크하기 
