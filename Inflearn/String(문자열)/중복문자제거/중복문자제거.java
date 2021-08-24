@@ -1,46 +1,33 @@
 package String_Ex;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * @author dohyun
  * 
- *         /* 설명 : 알파벳만 뒤집어서 문자열을 출력합니다
+ *         소문자로 된 한개의 문자열이 입력되면 중복된 문자를 제거하고 출력하는 프로그램을 작성하세요. 중복이 제거된 문자열의 각
+ *         문자는 원래 문자열의 순서를 유지합니다.
  * 
- *       
  */
 
-class Solution4 {
-	public String solution(String str) {
-		String answer;
-		char[] s = str.toCharArray();
-		int lt = 0;
-		int rt = s.length - 1;
-
-		while (lt < rt) {
-			// 알파벳인지 알수있는거 Character 클래스의 메소드 사용!
-			if (!Character.isAlphabetic(s[lt])) {
-				lt++; // 알파벳이 아닐때 lt를 1증가
-			} else if (!Character.isAlphabetic(s[rt])) {
-				rt--;
-			} else {
-				char tmp = s[lt];
-				s[lt] = s[rt];
-				s[rt] = tmp;
-				lt++;
-				rt--;
+class Solution5 {
+	public String solution5(String str) {
+		String answer = "";
+		// 자기 위치와 자기랑 같은 문자의 위치가 다르다?? 그러면 제거하는 아주똑똑한방법이 있었다.
+		for (int i = 0; i < str.length(); i++) {
+			System.out.println(str.charAt(i) + " " + i + " " + str.indexOf(str.charAt(i)));
+			if (str.charAt(i) == str.indexOf(str.indexOf(i))) {
+				answer += str.charAt(i);
+				System.out.println(answer);
 			}
 		}
-
-		answer = String.valueOf(s);
 
 		return answer;
 
 	}
 
 	public static void main(String[] args) {
-		Solution4 t = new Solution4();
+		Solution5 t = new Solution5();
 
 		Scanner sc = new Scanner(System.in);
 
@@ -48,7 +35,7 @@ class Solution4 {
 
 		System.out.println("==정답==");
 
-		System.out.println(t.solution(str));
+		System.out.print(t.solution5(str));
 
 	}
 

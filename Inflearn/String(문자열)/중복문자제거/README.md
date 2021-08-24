@@ -2,7 +2,9 @@
 
 ## 문제 접근 방법
 
-문제 파악 => 입력된 n 횟수만큼 문자열을 받고 문자열을 각각 뒤집어서 출력하면된다 + 특정 조건에 맞춰서 문자를 뒤집어서 출력합니다.
+문제 파악 => ArrayList를 통해 for문을 돌리고 똑같은 값의 유무를 통해 제거하려했지만 오산이었다. 
+
+<br>자기 위치와 자기랑 같은 문자의 위치가 다르다?? 그러면 제거하는 아주똑똑한방법이 있었다.
 
 
 ### 코드
@@ -64,73 +66,40 @@ class Solution4 {
 
 ```
 
-### 내가 시도 해본코드 
+### 내가 시도 해본코드  OR 다른 풀이
 
 ```python
-package String_Ex;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
-/**
- * @author dohyun
- * 
- *         /* 설명 :N개의 단어가 주어지면 각 단어를 뒤집어 출력하는 프로그램을 작성하세요 단어는 알파벳으로만 구성되어있습니다.
- * 
- *         출력 N개의 단어를 입력된 순서대로 한 줄에 하나씩 뒤집어서 출력합니다.
- */
-
-class Solution4 {
-	public String solution(String str) {
-		String answer;
-		char[] s = str.toCharArray();
-		int lt = 0;
-		int rt = s.length - 1;
-
-		while (lt < rt) {
-			// 알파벳인지 알수있는거 Character 클래스의 메소드 사용!
-			if (!Character.isAlphabetic(s[lt])) {
-				lt++; // 알파벳이 아닐때 lt를 1증가
-			} else if (!Character.isAlphabetic(s[rt])) {
-				rt--;
-			} else {
-				char tmp = s[lt];
-				s[lt] = s[rt];
-				s[rt] = tmp;
-				lt++;
-				rt--;
-			}
-		}
-
-		answer = String.valueOf(s);
-
-		return answer;
-
-	}
-
-	public static void main(String[] args) {
-		Solution4 t = new Solution4();
-
-		Scanner sc = new Scanner(System.in);
-
-		String str = sc.next();
-
-		System.out.println("==정답==");
-
-		System.out.println(t.solution(str));
-
-	}
-
+#다른풀이
+import java.util.*;
+public class Main{
+  public static String solution(String str) {
+	  String answer="";
+	  //문자를 카운트한다.
+	  //문자가 2개 이상일 경우 그 문자를 지운다.
+	  ArrayList<Character> list = new ArrayList<>();
+	  for(char a : str.toCharArray()) {
+		  if(!list.contains(a)) {
+			  list.add(a);
+			  answer+=a;
+		  }
+	  }
+	  return answer;
+  }
+  public static void main(String[] args){
+	
+    Scanner in=new Scanner(System.in);
+    String str = in.nextLine();
+    
+    System.out.print(solution(str)); 
+  }
 }
-
 ```
 
 ### 배운것
 
-● Character 클래스의 메소드를 이용한 알파벳여부 참 거짓 판단..
+● indexOf
 
-● 문자열을 배열화 하고 인덱스를 통한 위치교환 알고리즘 (전과 동일 복습)
+● ArrayList와 forEach 문 사용법 숙지하기 ( 혼자 시도해보다가 틀림)
 
-●  String클래스의 valueOf() 메소드 (전과 동일 복습)
+● charAt으로 위치값들을 잘 파악해서 요리조리 드리블해보자
 
-● 푸는데 오래걸려서 참고했으므로 내가 쓴 답과 정답 동일하게 올렸습니다.
