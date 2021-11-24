@@ -1,0 +1,2 @@
+# 람다를 활용한 정렬 - 사용시 +  역으로 작은순기준 정렬 
+li.sort(key = lambda x: ( int(x[3]) , int(x[2]) , int(x[1])))
