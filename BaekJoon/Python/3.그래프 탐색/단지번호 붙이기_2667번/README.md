@@ -1,53 +1,88 @@
 # 문제 주소
-https://www.acmicpc.net/problem/2839
+https://www.acmicpc.net/problem/2667
 
 ## 문제 접근 방법
-조건문 사용을 통한 코드
+dfs를 통해 모든 경우를 탐색하며 count를 하려했는데 count 변수의 활용 위치에 대한 판단이 잘 서지 않았다.
 
 ### 코드
 ```python
-# 설탕배달
-n = int(input())
+from collections import deque
 
-bong = 0
+n,m = map(int, input().split())
 
-while n>0:
-    if n % 5 ==0:
-        bong += (n//5)
-        print(bong)
+maze =[]
+
+for i in range(n):
+    maze.append(input())
+
+visited = [[0] * m for i in range(n)]
+
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
+
+
+queue = []
+queue = deque()
+
+
+queue.append((0,0))
+visited[0][0] = 1
+
+while queue:
+    x,y = queue.popleft()
+    if x == n-1 and y== m-1:
+        print(visited[x][y])
         break
-    n = n-3
-    bong +=1
-else:
-    print(-1)
+
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if nx >= 0 and nx < n and ny >=0 and ny <m:
+            if visited[nx][ny] == 0 and maze[nx][ny] == '1':
+                visited[nx][ny] = visited[x][y] + 1
+                queue.append((nx,ny))
+
 ```
 
 ### 내가 시도 해본코드 
 
 ```python
-#백준 2839
+n,m = map(int, input().split())
 
-n = int(input())
+maze =[]
 
-bong = 0
+for i in range(n):
+    maze.append(map(int,input()))
 
-while n>0:
-    if n % 5 ==0:
-        bong += 1
-        n=n-5
-    elif n > 0:
-        n= n-3
-        bong +=1
-    else:
-        print(-1)
-        break
+visited = [[0] * (m+1)  for i in range(n+1)]
+
+print(visited)
+
+# count = 0
+
+'''
+1은 이동가능 0은 이동할수없음 1,1에서 출발
+'''
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
+
+def dfs(n,m,count):
+    visited[n][m] = 1
+    for i in range(4):
+        nx = n + dx
+        ny = m + dy
+        if nx < 0 or nx > n or ny <0 or ny >m:
+            continue
+        elif visited[nx][ny] ==0 and maze[nx][ny] ==1:
+            count+=1
+            print(count)
+            dfs(nx,ny,count)
+    return count
 
 
-
-print(bong)
+dfs(n,m,0)
 ```
 
 ### 배운것
-조건문을 적용할때 break의 사용과 print 시점을 잘 파악해야겠다.
+dfs와 bfs를 사용하는 판단과 visited[nx][ny] = visited[x][y] + 1 의 활용이 새로웠다
 <br>
-특히 if문을 사용할때 elif문과 else의 조건을 적용하며 if가 제외된 경우라는것을 명심해야한다.
