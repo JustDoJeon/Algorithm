@@ -1,8 +1,18 @@
-# 람다를 활용한 정렬 - 사용시 +  역으로 작은순기준 정렬 
-li.sort(key = lambda x: ( int(x[3]) , int(x[2]) , int(x[1])))
 
-좋은 문제 
-1) 숨바꼭질
+
+# 5, 17            x+1 or x-1 or 2*x 를 1초에 움직임
+
+'''
+시작점 5 도착점 17
+0초에 갈수있는 수는 1
+1초: 4 6 10 (  5-1, 5+1 5*2)
+2초 : 3 5 7  8 9 11 12 20
+3초: 16 18 ....
+4초 : 17
+'''
+
+# not list -> list가 비어있는지 확인 이게 트루면 비어있는거임!
+
 import sys
 
 from collections import deque
@@ -64,7 +74,3 @@ x = 18, j = 17, 19, 36
 
 출처 : https://tooo1.tistory.com/111
 '''
-
-* 파이썬은 재귀 사용시 재쉬 시간제한 걸려있으니깐 
-import sys
-sys.setrecursionlimit(10000)
