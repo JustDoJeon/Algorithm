@@ -7,8 +7,7 @@ public class 정수내림차순 {
 
 	public static void main(String[] args) {
 		long n = 118372;
-
-		System.out.println(solution(n));
+		solution(n);
 	}
 
 	public static long solution(long n) {

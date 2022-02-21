@@ -10,7 +10,7 @@ public class 최대공약수와최소공배수 {
 	}
 
 	public static int[] solution(int n, int m) {
-		int[] answer = new int[2];
+		int[] answer = {1,2};
 
 		int big = Math.max(n, m);
 		int small = Math.min(m, n);

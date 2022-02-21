@@ -27,9 +27,7 @@ public class 자연수뒤집어배열로 {
 		}
 
 		// 출력검사
-		for (int i = 0; i < answer.length; i++) {
-			System.out.println(answer[i]);
-		}
+
 
 		return answer;
 	}

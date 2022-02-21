@@ -6,7 +6,7 @@ public class 시저암호 {
 		// TODO Auto-generated method stub
 		// a~ 97부터 122
 		// A65~90
-		String s = "aBZ";
+		String s = "aB Z";
 		int n = 4;
 		String answer = "";
 //		System.out.println((int) 'z');

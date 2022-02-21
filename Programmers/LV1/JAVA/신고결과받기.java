@@ -55,15 +55,13 @@ public class 신고결과받기 {
 				}
 			}
 		}
-		
-		int i=0;
+
+		int i = 0;
 		int[] answer = new int[id_list.length];
-		for(String data : id_list) {
+		for (String data : id_list) {
 			answer[i] = mail_map.get(data);
 			i++;
 		}
-		Character.lowercase
-		
 		return answer;
 
 	}
