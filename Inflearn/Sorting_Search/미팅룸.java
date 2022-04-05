@@ -7,7 +7,6 @@ import java.util.PriorityQueue;
 public class 미팅룸 {
 
 	public static void main(String[] args) {
-
 		int[][] intervals = { { 5, 10 }, { 16, 20 }, { 0, 30 } };
 
 		boolean ans = solve(intervals);
